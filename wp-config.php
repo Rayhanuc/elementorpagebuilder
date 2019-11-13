@@ -27,19 +27,21 @@ if (file_exists(dirname(__FILE__)."/local.php")) {
 	define('DB_USER', 'root');
 	define('DB_PASSWORD', '');
 	define('DB_HOST', 'localhost');
-}else{
+}
+else{
+	//Live database settings
+	define('DB_NAME', 'd24g9fpk2k47uq');
+	define('DB_USER', 'bmlvrtpwjwnawx');
+	define('DB_PASSWORD', '3dd31eeaec730852b554ff2e222d62b70c424066e79380169ec5fb6e117c4364');
+	define('DB_HOST', 'ec2-54-243-208-234.compute-1.amazonaws.com');
+}
+
+/*else{
 	//Live database settings
 	define('DB_NAME', 'd3l0v1np803aor');
 	define('DB_USER', 'alqnuoulazvrct');
 	define('DB_PASSWORD', 'bc2bc0e9863c528f4df31ee042dd3ee20b3401f61a3c53cea1a78ec83a0ec2d7');
 	define('DB_HOST', 'ec2-174-129-253-140.compute-1.amazonaws.com');
-}
-/*else{
-	//Live database settings
-	define('DB_NAME', 'lkdfjskldsfj');
-	define('DB_USER', 'root');
-	define('DB_PASSWORD', '');
-	define('DB_HOST', 'localhost');
 }*/
 
 
