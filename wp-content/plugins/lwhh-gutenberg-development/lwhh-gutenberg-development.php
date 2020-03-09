@@ -44,3 +44,27 @@ function lwhhgd_enqueue_block_assets() {
 add_action('enqueue_block_assets', 'lwhhgd_enqueue_block_assets');
 // It will work only in editor / backend side
 // add_action('enqueue_editor_block_assets', '');
+
+
+
+// custom block register
+
+function lwhhgd_add_block_categories($categories) {
+    if ('page' !== get_post_type($post)) {
+        return $categories;
+    }
+    return array_merge( $categories, array(
+        array(
+            'slug' => 'lwhhgd',
+            'title' => __('LWHH GD', 'lwhhgd'),
+            'icon' => 'editor-video'
+        ),
+        /*array(
+            'slug' => 'lwhhgd2',
+            'title' => __('LWHH GD2', 'lwhhgd'),
+            'icon' => 'editor-video'
+        )*/
+    ) );
+}
+
+add_filter('block_categories','lwhhgd_add_block_categories', 10, 2);

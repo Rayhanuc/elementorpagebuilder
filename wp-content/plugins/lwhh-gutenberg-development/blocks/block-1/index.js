@@ -100,9 +100,15 @@ const { __ } = wp.i18n;
 
 registerBlockType('lwhhgd/hello-world',
 {
-    title: __('Hi! World'),
+    title: __('Hello World'),
     description: __('This is Hello World Block'),
-    category: 'common',
+    category: 'lwhhgd',
+    // Another way to include icon
+    icon: {
+        src: 'admin-tools',
+        background: 'tomato',
+        foreground: 'white'
+    },
     keyworld: [
         __('hello world'),
         __('dummy block'),
@@ -113,7 +119,6 @@ registerBlockType('lwhhgd/hello-world',
         {},
         {}
     ],
-    icon: 'admin-site',
     transforms: {},
     support: {},
     edit() {
