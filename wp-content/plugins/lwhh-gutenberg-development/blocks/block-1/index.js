@@ -120,7 +120,19 @@ registerBlockType('lwhhgd/hello-world',
         {}
     ],
     transforms: {},
-    support: {},
+    supports: {
+        align: true,
+        alignWide: false,
+        // align: ['left', 'center', 'right'],
+        anchor: true,
+        // customClassName: false,
+        // className: false,
+        // html: false,
+        // inserter: false
+        
+        // multiple: false
+        reusable: false
+    },
     edit() {
         return createElement('h2', {}, 'Hello World');
     },
