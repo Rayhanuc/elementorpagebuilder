@@ -92,7 +92,6 @@
 
 
 // class ৩.৪ - জাভাস্ক্রিপ্ট এপিআই ফাংশন - registerBlockType
-; (function (wp) {
 const { createElement } = wp.element;
 const { registerBlockType } = wp.blocks;
 
@@ -140,5 +139,3 @@ registerBlockType('lwhhgd/hello-world',
         return createElement('h2', {}, 'Hello World is coming from save function.');
     }
 });
-
-}(window.wp));

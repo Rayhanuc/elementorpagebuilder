@@ -17,6 +17,7 @@
 defined('ABSPATH' ) || exit;
 
 require plugin_dir_path(__FILE__)  . 'blocks/block-1/index.php';
+require plugin_dir_path(__FILE__)  . 'blocks/block-2/index.php';
 
 // require_once(plugin_dir_path( __FILE__ )."blocks/block-1/index.php");
 
