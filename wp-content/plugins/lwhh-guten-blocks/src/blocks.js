@@ -9,4 +9,5 @@
  * Webpack is compiling as the input file.
  */
 
-import './alert/alert.js';
+import './alert/index';
+import './alert-rt/index';

@@ -187,6 +187,9 @@ function twentytwenty_register_styles() {
 	// Add output of Customizer settings as inline style.
 	wp_add_inline_style( 'twentytwenty-style', twentytwenty_get_customizer_css( 'front-end' ) );
 
+    // bootstrap css
+    // wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap-v4.4.1.min.css', null, $theme_version, 'print' );
+    
 	// Add print CSS.
 	wp_enqueue_style( 'twentytwenty-print-style', get_template_directory_uri() . '/print.css', null, $theme_version, 'print' );
 
