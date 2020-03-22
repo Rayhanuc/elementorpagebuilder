@@ -12,3 +12,4 @@
 import './alert/index';
 import './alert-rt/index';
 import './alert-select/index';
+import './image/index';
