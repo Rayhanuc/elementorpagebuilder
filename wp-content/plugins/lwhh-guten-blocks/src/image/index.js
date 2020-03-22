@@ -56,10 +56,16 @@ registerBlockType( 'lwhh/image', {
 
         src: {
             type: 'string',
+            source: 'attribute', // source type
+            selector: '.lwhh-figure__image', // dom selector
+            attribute: 'src', // html attribute name
         },
 
         alt: {
             type: 'string',
+            source: 'attribute', // source type
+            selector: '.lwhh-figure__image', // dom selector
+            attribute: 'alt', // html attribute name
         }
     },
 
