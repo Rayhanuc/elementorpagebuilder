@@ -219,3 +219,107 @@
 
 .lwhh-figure__image {
   display: block; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+/* main page css started */
+.blog-box-bg-1 {
+  background-image: url(../img/blog-box-1.jpg); }
+
+.blog-box-bg-2 {
+  background-image: url(../img/blog-box-2.jpg); }
+
+.blog-box-bg-3 {
+  background-image: url(../img/blog-box-3.jpg); }
+
+.section-title {
+  text-align: center;
+  color: #575758;
+  font-size: 17px;
+  margin-bottom: 70px; }
+
+.section-title h2 {
+  color: #222; }
+
+section.section-padding {
+  padding: 100px 0; }
+
+.blog-box-bg {
+  background-position: center;
+  height: 200px;
+  background-size: cover;
+  background-color: #333;
+  border: 1px solid #fdaf67; }
+
+.blog-box-bg {
+  border-bottom: 1px solid; }
+
+.blog-box-content {
+  border: 1px solid #f4f4f4;
+  padding: 20px;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s; }
+
+.blog-meta i.fa {
+  color: #fdaf67; }
+
+.blog-meta a {
+  color: #565656; }
+
+.blog-meta {
+  font-size: 14px; }
+
+.blog-meta span {
+  margin-right: 10px; }
+
+.blog-meta span:last-child {
+  margin-right: 0px; }
+
+.blog-box-content h3 {
+  font-size: 20px;
+  margin-top: 20px; }
+
+.blog-readmore-btn {
+  background: #fd8e2e;
+  color: #fff;
+  padding: 10px 20px;
+  display: inline-block;
+  text-transform: uppercase;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 5px;
+  -webkit-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s; }
+
+.blog-readmore-btn:hover {
+  background: #333;
+  color: #fff; }
+
+.single-blog-box:hover .blog-box-content {
+  border-color: #FD8E2E; }
+
+/* main page button start */
+.btn {
+  text-transform: uppercase;
+  background: #19b5fe;
+  margin-top: 20px;
+  color: #fff;
+  font-weight: 700;
+  -webkit-box-shadow: 1px 3px 8px #cccbcb;
+          box-shadow: 1px 3px 8px #cccbcb; }
+
+.btn a {
+  color: #fff; }
+
+/* main page button end */
