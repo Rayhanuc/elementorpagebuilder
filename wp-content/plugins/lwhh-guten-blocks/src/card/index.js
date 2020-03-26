@@ -69,6 +69,11 @@ registerBlockType( 'lwhh/card', {
             type: 'string',
             default: 'top-right'
         },
+        
+        image_position: {
+            type: 'string',
+            default: 'top'
+        },
     },
 
     supports: {
@@ -93,15 +98,34 @@ registerBlockType( 'lwhh/card', {
             user, 
             date, 
             btn_text, 
-            label_position
+            label_position,
+            image_position
         } = attributes;
 
         return (
-            <div className="single-blog-box">
+            <div className={`single-blog-box ${image_position}`}>
                 <InspectorControls>
                     <PanelBody
                         title={__('Image')}
                         initialOpen={true}
+                    >
+                        <SelectControl
+                            label={ __( 'Image Position' ) }
+                            value={ image_position }
+                            onChange={ ( position ) => setAttributes({image_position:position}) }
+                            options={ [
+                                { 
+                                    value: 'top',
+                                    label: __('Image On Top') 
+                                },
+                                { value: 'left', label: __('Image On Left') },
+                                { value: 'right', label: __('Image On Right') },
+                            ] }
+                        />
+                        
+                    </PanelBody>
+                    <PanelBody
+                        title={__('Label')}
                     >
                         <SelectControl
                             label={ __( 'Label Position' ) }
