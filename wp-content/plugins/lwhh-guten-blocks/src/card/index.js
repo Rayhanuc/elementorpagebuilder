@@ -11,7 +11,14 @@ import './style.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { RichText } = wp.editor;
+const { 
+    RichText, 
+    InspectorControls
+} = wp.editor;
+const { 
+    PanelBody,
+    SelectControl
+} = wp.components;
 
 /**
  * Register: aa Gutenberg Block.
@@ -57,6 +64,11 @@ registerBlockType( 'lwhh/card', {
         btn_text: {
             type: 'string',
         },
+
+        label_position: {
+            type: 'string',
+            default: 'top-right'
+        },
     },
 
     supports: {
@@ -75,59 +87,97 @@ registerBlockType( 'lwhh/card', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit( {attributes, setAttributes} ) {
-        const {title, content, user, date, btn_text} = attributes;
+        const {
+            title, 
+            content, 
+            user, 
+            date, 
+            btn_text, 
+            label_position
+        } = attributes;
 
         return (
             <div className="single-blog-box">
-                <div className="blog-box-bg blog-box-bg-1"></div>
-                <div className="blog-box-content">
-                    <p className="blog-meta">
-                        <span><a href="#"><i className="fa fa-user"></i> 
-                        <RichText
-                            value={ user }
-                            multiline={false}
-                            placeholder={__('Add your card user')}
-                            onChange={ ( user ) => setAttributes( { user } ) }
+                <InspectorControls>
+                    <PanelBody
+                        title={__('Image')}
+                        initialOpen={true}
+                    >
+                        <SelectControl
+                            label={ __( 'Label Position' ) }
+                            value={ label_position }
+                            onChange={ ( position ) => setAttributes({label_position:position}) }
+                            options={ [
+                                { value: 'top-left', label: 'Top Left' },
+                                { value: 'top-center', label: 'Top Center' },
+                                { value: 'top-right', label: 'Top Right' },
+                                { value: 'middle-left', label: 'Middle Left' },
+                                { value: 'middle-center', label: 'Middle Center' },
+                                { value: 'middle-right', label: 'Middle Right' },
+                                { value: 'bottom-left', label: 'Bottom Left' },
+                                { value: 'bottom-center', label: 'Bottom Center' },
+                                { value: 'bottom-right', label: 'Bottom Right' },
+                            ] }
                         />
-                        </a></span>
-                        <span><i className="fa fa-calendar"></i> 
-                        <RichText
-                            value={ date }
-                            multiline={false}
-                            placeholder={__('Add your card date')}
-                            onChange={ ( date ) => setAttributes( { date } ) }
-                        />
-                        </span>
-                    </p>
+                        
+                    </PanelBody>
+                </InspectorControls>
+                
 
-                    {/* <h3>A Short Guide to Talking About</h3> */}
-                    <RichText
-                        tagName="h3"
-                        value={ title }
-                        multiline={false}
-                        placeholder={__('Add your card title')}
-                        onChange={ ( title ) => setAttributes( { title } ) }
-                    />
+                    <div className="blog-box-bg blog-box-bg-1"></div>
+                    <div className={`blog-box-content ${label_position}`} >
+                        <p className="blog-meta">
+                            <span><a href="#"><i className="fa fa-user"></i> 
+                            <RichText
+                                value={ user }
+                                multiline={false}
+                                placeholder={__('Add your card user')}
+                                onChange={ ( user ) => setAttributes( { user } ) }
+                                keepPlaceholderOnFocus={true}
+                            />
+                            </a></span>
+                            <span><i className="fa fa-calendar"></i> 
+                            <RichText
+                                value={ date }
+                                multiline={false}
+                                placeholder={__('Add your card date')}
+                                onChange={ ( date ) => setAttributes( { date } ) }
+                                keepPlaceholderOnFocus={true}
+                            />
+                            </span>
+                        </p>
 
-                    <RichText
-                        tagName="p"
-                        value={ content }
-                        multiline={false}
-                        placeholder={__('Add your card content')}
-                        onChange={ ( content ) => setAttributes( { content } ) }
-                    />
-                    {/* <a href="" className="blog-readmore-btn">read more</a> */}
+                        <h3>
+                            <RichText
+                                value={ title }
+                                multiline={false}
+                                placeholder={__('Add your card title')}
+                                onChange={ ( title ) => setAttributes( { title } ) }
+                                keepPlaceholderOnFocus={true}
+                            />
+                        </h3>
 
-                    <RichText
-                        tagName="a"
-                        className="blog-readmore-btn"
-                        value={ btn_text }
-                        href="#"
-                        multiline={false}
-                        placeholder={__('label')}
-                        onChange={ ( btn_text ) => setAttributes( { btn_text } ) }
-                    />
-                </div>
+                        <p>
+                            <RichText
+                                value={ content }
+                                multiline={false}
+                                placeholder={__('Add your card content')}
+                                onChange={ ( content ) => setAttributes( { content } ) }
+                                keepPlaceholderOnFocus={true}
+                            />
+                        </p>
+
+                        <a href="#" className="blog-readmore-btn">
+                            <RichText
+                                value={ btn_text }
+                                multiline={false}
+                                placeholder={__('label')}
+                                onChange={ ( btn_text ) => setAttributes( { btn_text } ) }
+                                keepPlaceholderOnFocus={true}
+                            />
+                        </a>
+                    </div>
+                    
             </div>
 	    );
     },
