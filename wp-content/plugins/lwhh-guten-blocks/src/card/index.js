@@ -13,13 +13,15 @@ const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 const { 
     RichText, 
-    InspectorControls
+    InspectorControls,
+    InnerBlocks
 } = wp.editor;
 const { 
     PanelBody,
     SelectControl
 } = wp.components;
 
+const ALLOWED_BLOCKS = ['core/heading', 'core/paragraph', 'core/button'];
 /**
  * Register: aa Gutenberg Block.
  *
@@ -150,56 +152,9 @@ registerBlockType( 'lwhh/card', {
 
                     <div className="blog-box-bg blog-box-bg-1"></div>
                     <div className={`blog-box-content ${label_position}`} >
-                        <p className="blog-meta">
-                            <span><a href="#"><i className="fa fa-user"></i> 
-                            <RichText
-                                value={ user }
-                                multiline={false}
-                                placeholder={__('Add your card user')}
-                                onChange={ ( user ) => setAttributes( { user } ) }
-                                keepPlaceholderOnFocus={true}
-                            />
-                            </a></span>
-                            <span><i className="fa fa-calendar"></i> 
-                            <RichText
-                                value={ date }
-                                multiline={false}
-                                placeholder={__('Add your card date')}
-                                onChange={ ( date ) => setAttributes( { date } ) }
-                                keepPlaceholderOnFocus={true}
-                            />
-                            </span>
-                        </p>
-
-                        <h3>
-                            <RichText
-                                value={ title }
-                                multiline={false}
-                                placeholder={__('Add your card title')}
-                                onChange={ ( title ) => setAttributes( { title } ) }
-                                keepPlaceholderOnFocus={true}
-                            />
-                        </h3>
-
-                        <p>
-                            <RichText
-                                value={ content }
-                                multiline={false}
-                                placeholder={__('Add your card content')}
-                                onChange={ ( content ) => setAttributes( { content } ) }
-                                keepPlaceholderOnFocus={true}
-                            />
-                        </p>
-
-                        <a href="#" className="blog-readmore-btn">
-                            <RichText
-                                value={ btn_text }
-                                multiline={false}
-                                placeholder={__('label')}
-                                onChange={ ( btn_text ) => setAttributes( { btn_text } ) }
-                                keepPlaceholderOnFocus={true}
-                            />
-                        </a>
+                        <InnerBlocks
+                            allowedBlocks={ALLOWED_BLOCKS}
+                        />
                     </div>
                     
             </div>
