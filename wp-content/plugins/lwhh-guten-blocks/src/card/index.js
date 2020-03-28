@@ -14,11 +14,15 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 const { 
     RichText, 
     InspectorControls,
-    InnerBlocks
+    InnerBlocks,
+    MediaUpload,
+    MediaUploadCheck
+
 } = wp.editor;
 const { 
     PanelBody,
-    SelectControl
+    SelectControl,
+    IconButton
 } = wp.components;
 
 const ALLOWED_BLOCKS = ['core/heading', 'core/paragraph', 'core/button'];
@@ -76,6 +80,18 @@ registerBlockType( 'lwhh/card', {
             type: 'string',
             default: 'top'
         },
+
+        img_src: {
+            type: 'string',
+        },
+
+        img_alt: {
+            type: 'string',
+        },
+
+        img_id: {
+            type: 'integer',
+        }
     },
 
     supports: {
@@ -101,7 +117,10 @@ registerBlockType( 'lwhh/card', {
             date, 
             btn_text, 
             label_position,
-            image_position
+            image_position,
+            img_src,
+            img_alt,
+            img_id
         } = attributes;
 
         return (
@@ -149,8 +168,34 @@ registerBlockType( 'lwhh/card', {
                     </PanelBody>
                 </InspectorControls>
                 
+                
+                    {/* image block code start */}
+                    {img_src && <img src={img_src} alt={img_alt} />}
+                    <MediaUploadCheck>
+                        <MediaUpload
+                            onSelect={ ( image ) => {
+                                setAttributes({
+                                    img_id: image.id,
+                                    img_alt: image.title,
+                                    img_src: (image.sizes.large && image.sizes.large.url) || image.url
+                                });
+                            }}
+                            multiple = {false}
+                            allowedTypes={ ['image'] }
+                            value={ img_id }
+                            render={ ( { open } ) => (
+                                <IconButton
+                                    className = 'lwhh-card-figure-btn'
+                                    onClick = {open}
+                                    icon = {(img_id || img_src) ? 'update' : "format-image"}
+                                    label = {(img_id || img_src) ? __('update image') : __('Add image')}
+                                />
+                            ) }
+                        />
+                    </MediaUploadCheck> 
+                    {/* image block code end */} 
 
-                    <div className="blog-box-bg blog-box-bg-1"></div>
+
                     <div className={`blog-box-content ${label_position}`} >
                         <InnerBlocks
                             allowedBlocks={ALLOWED_BLOCKS}
