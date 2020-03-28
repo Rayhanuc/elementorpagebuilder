@@ -154,6 +154,14 @@ registerBlockType( 'lwhh/card', {
                     <div className={`blog-box-content ${label_position}`} >
                         <InnerBlocks
                             allowedBlocks={ALLOWED_BLOCKS}
+                            template={
+                                [
+                                    ['core/heading', {placeholder: 'Type card heading'}],
+                                    ['core/paragraph', {placeholder: 'Type card description'}],
+                                    ['core/button', {}]
+                                ]
+                            }
+                            templateLock='all'
                         />
                     </div>
                     
