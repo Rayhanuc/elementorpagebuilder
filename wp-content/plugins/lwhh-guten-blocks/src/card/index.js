@@ -225,7 +225,30 @@ registerBlockType( 'lwhh/card', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
-	save( {} ){
-       
+	save( {attributes} ){
+        const {
+            title, 
+            content, 
+            user, 
+            date, 
+            btn_text, 
+            label_position,
+            image_position,
+            img_src,
+            img_alt,
+        } = attributes;
+
+        
+       return (
+        <div className={`single-blog-box ${image_position}`}>
+            {/* image block code start */}
+            <img src={img_src} alt={img_alt} />
+            <div className={`blog-box-content ${label_position}`} >{btn_text}</div>
+            <div className='lwhh-card-body'>
+                <InnerBlocks.Content />
+            </div>
+        </div>
+        
+       );
 	},
 } );
