@@ -22,7 +22,8 @@ const {
 const { 
     PanelBody,
     SelectControl,
-    IconButton
+    IconButton,
+    RangeControl
 } = wp.components;
 
 const ALLOWED_BLOCKS = ['core/heading', 'core/paragraph', 'core/button'];
@@ -69,6 +70,8 @@ registerBlockType( 'lwhh/card', {
 
         btn_text: {
             type: 'string',
+            source: 'text',
+            selector: '.blog-box-content',
         },
 
         label_position: {
@@ -83,13 +86,23 @@ registerBlockType( 'lwhh/card', {
 
         img_src: {
             type: 'string',
+            source: 'attribute',
+            selector: 'img',
+            attribute: 'src'
         },
 
         img_alt: {
             type: 'string',
+            source: 'attribute',
+            selector: 'img',
+            attribute: 'alt'
         },
 
         img_id: {
+            type: 'integer',
+        },
+
+        border_radius: {
             type: 'integer',
         }
     },
@@ -120,15 +133,31 @@ registerBlockType( 'lwhh/card', {
             image_position,
             img_src,
             img_alt,
-            img_id
+            img_id,
+            border_radius
         } = attributes;
 
         return (
-            <div className={`single-blog-box ${image_position}`}>
+            <div style={{borderRadius: border_radius + 'px'}} className={`single-blog-box ${image_position}`}>
                 <InspectorControls>
                     <PanelBody
-                        title={__('Image')}
+                        title={__('Card')}
                         initialOpen={true}
+                    >
+                        <RangeControl
+                            label={__('Border Radius')}
+                            value={ border_radius }
+                            onChange={ ( border_radius ) => setAttributes( { border_radius } ) }
+                            min={ 0 }
+                            max={ 100 }
+                        />
+
+                    </PanelBody>
+
+
+                    <PanelBody
+                        title={__('Image')}
+                        initialOpen={false}
                     >
                         <SelectControl
                             label={ __( 'Image Position' ) }
@@ -236,11 +265,12 @@ registerBlockType( 'lwhh/card', {
             image_position,
             img_src,
             img_alt,
+            border_radius
         } = attributes;
 
-        
+
        return (
-        <div className={`single-blog-box ${image_position}`}>
+        <div style={{borderRadius: border_radius + 'px'}} className={`single-blog-box ${image_position}`}>
             {/* image block code start */}
             <img src={img_src} alt={img_alt} />
             <div className={`blog-box-content ${label_position}`} >{btn_text}</div>
